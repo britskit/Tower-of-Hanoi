@@ -38,32 +38,32 @@ _______________________________________________________________________'''
 # but algo will work for any number of discs
 disc = h.prompt_start("Number of discs (min: 3, max: 10): ")
 for i in range(disc, 0, -1):
-	a.push(i)
+    a.push(i)
 
 while 1: 
-	h.view_all(disc, a, b, c)
-	x, y = h.prompt("Type \"0 0\" to auto-solve. \nDisc to move (eg type \"1 2\" to move disc from pole 1 to pole 2):\n")
+    h.view_all(disc, a, b, c)
+    x, y = h.prompt("Type \"0 0\" to auto-solve. \nDisc to move (eg type \"1 2\" to move disc from pole 1 to pole 2):\n")
 
-	# user entered auto-solve
-	if x == 0 and y == 0:
-		h.view_all(disc, a, b, c)
-		h.backtrack(disc, poles, moves)
-		break
+    # user entered auto-solve
+    if x == 0 and y == 0:
+        h.view_all(disc, a, b, c)
+        h.backtrack(disc, poles, moves)
+        break
 
-	# user entered pole numbers to move
-	else:
-		# if move is valid
-		if h.move_disc(poles[x - 1], poles[y - 1]) == 1:
-			moves.push([x, y])
-			h.view_all(disc, a, b, c)
+    # user entered pole numbers to move
+    else:
+        # if move is valid
+        if h.move_disc(poles[x - 1], poles[y - 1]) == 1:
+            moves.push([x, y])
+            h.view_all(disc, a, b, c)
 
-			if h.is_solved(poles, disc):
-				print "\n ##### SOLVED ##### \n"
-				exit()
+            if h.is_solved(poles, disc):
+                print "\n ##### SOLVED ##### \n"
+                exit()
 
-		else:
-			print "\nInvalid move."
-			h.time.sleep(.5)
-			
-		continue
+        else:
+            print "\nInvalid move."
+            h.time.sleep(.5)
+            
+        continue
     
